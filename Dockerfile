@@ -27,4 +27,15 @@ RUN curl -L -o /tmp/docker-$DOCKER_CLIENT_VERSION.tgz https://download.docker.co
     && mv /tmp/docker/docker /usr/bin \
     && rm -rf /tmp/docker-$DOCKER_CLIENT_VERSION /tmp/docker
 
+RUN apk add --no-cache python3 && \
+    python3 -m ensurepip && \
+    rm -r /usr/lib/python*/ensurepip && \
+    pip3 install --upgrade pip setuptools && \
+    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
+    if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
+    rm -r /root/.cache
+
+RUN pip install 'docker-compose==1.21.2' && \
+    docker-compose --version
+
 VOLUME ["/root/.config"]

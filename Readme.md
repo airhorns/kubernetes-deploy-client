@@ -6,4 +6,5 @@ Dockerfile for a gcloud & ruby environemnt ready to run https://github.com/Shopi
  - kubectl (from gcloud component)
  - ruby 2.5.1
  - docker client 18.03.1-ce
+ - docker-compose 1.21.2
  - curl, wget, git, openssh
